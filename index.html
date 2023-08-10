@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4CUTS</title>
     <style>
-        /* 이서윤체 폰트 적용을 위한 코드 */
         @font-face {
             font-family: "LeeSeoyun";
             src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
@@ -15,7 +14,6 @@
             font-style: normal;
         }
 
-        /* body태그 자체에 css 요소 부여 */
         body {
             font-family: "LeeSeoyun";
             margin: 0;
@@ -110,6 +108,107 @@
             opacity: 1;
             transition: opacity 0.5s linear;
         }
+
+        @keyframes img6 {
+            0% {
+            bottom: 0px;
+            }
+            100% {
+            bottom: 100px;
+            }
+        }
+
+        .absolute-img5-area {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+
+            animation-name: img6;
+            animation-duration: 2s;
+            animation-duration: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-fill-mode: forwards;
+        }
+
+        .absolute-img5-area img {
+            width: 150px;
+            cursor: pointer;
+        }
+
+        #modal.modal-overlay {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            display: none;
+        }
+
+        #modal .modal-window {
+            background: white;
+            box-shadow: 0 8px 32px 0 grey;
+            backdrop-filter: blur(13.5px);
+            -webkit-backdrop-filter: blur(13.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            width: 350px;
+            height: 500px;
+            position: relative;
+            padding: 10px;
+        }
+
+        #modal .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            color: black;
+            position: absolute;
+            right: 0;
+        }
+
+        #modal .content {
+            margin-top: 10px;
+            padding: 0px 10px;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #modal .content img {
+            width: 100%;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        #modal .content span {
+            font-size: 20px;
+            margin: 2px;
+            font-weight: 900;
+            font-family: auto;
+        }
+
+        #modal .content button {
+            position: absolute;
+            bottom: 20px;
+            width: 90%;
+            height: 50px;
+            color: white;
+            background: green;
+            border: 0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+        }
     </style>
     <script>
         // 텍스트가 보여지는 기능
@@ -148,6 +247,16 @@
         // 1. 선택된 사진의 숫자를 가진 텍스트를 alert 형태로 출력해줌
         function alertText(number) {
             alert(`${number}번째 추억이에요! 다음 사진도 눌러봐요!`);
+        }
+
+        function showModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
         }
     </script>
 </head>
@@ -189,6 +298,22 @@
         <div class="footer">
             <p class="f-title">Our Happy Time</p>
             <p class="f-date">2023.08.09</p>
+        </div>
+    </div>
+        <div class="absolute-img5-area">
+            <img src="./img5.png" onclick="showModal()" />
+        </div>
+        <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="close-area" onclick="closeModal()">𝗫</div>
+            <div class="content">
+                <img src="./img6.jpg" />
+                <span>이거 누른 사람</span>
+                <span>바보~</span>
+                <button onclick="location.href='https://youtu.be/YXwYJyrKK5A'">
+                    이것도 눌러봐요!
+                </button>
+            </div>
         </div>
     </div>
 </body>
